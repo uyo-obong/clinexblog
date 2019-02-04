@@ -16,7 +16,7 @@
 
 			<!-- Author -->
 			<p class="float-left">by <a style="text-decoration: none;" href="#">{{ $single->author }}</a></p>
-			<p class="float-right">Posted {{ $single->created_at->diffForHumans() }}</p>
+			<p class="float-right"> {{ $single->created_at->diffForHumans() }}</p>
 
 			<hr>
 
