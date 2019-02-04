@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/favicon.png')}}">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> Clinex Blog</title>
-
 
     <!-- Styles -->
     <link href="{{ URL::to('admins/usercss/bootstrap.css') }}" rel="stylesheet">
@@ -34,5 +35,6 @@
         </main>
         @include('footer')
     </div>
+    <script id="dsq-count-scr" src="//clinexblog.disqus.com/count.js" async></script>
 </body>
 </html>

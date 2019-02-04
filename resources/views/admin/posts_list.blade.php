@@ -6,14 +6,16 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
-						<h4 class="title">Post List</h4>
+						<h4 class="title pull-left">Post List</h4>
+						<p class="pull-right"><a class="btn btn-primary" href="{{ route('admin.view') }}">New Post</a></p>
 					</div>
 					<div class="content table-responsive table-full-width">
 						<table class="table table-striped">
 							<thead>
 								<th>N/S</th>
 								<th>Title</th>
-								<th>Created At</th>
+								<th>Author</th>
+								<th>Created</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</thead>
@@ -22,6 +24,7 @@
 								<tr>
 									<td>{{ $loop->index + 1 }}</td>
 									<td>{{ $post->title }}</td>
+									<td>{{ $post->author }}</td>
 									<td>{{ $post->created_at->diffForHumans() }}</td>
 									<td><a class="btn btn-success" href="{{ route('edit', $post->id )}}">Edit</a></td>
 									<td>

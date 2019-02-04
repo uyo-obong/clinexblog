@@ -31,7 +31,7 @@
 			<hr>
 
 			<!-- Single Comment -->
-			
+			@include('comments')
 			
 
 		</div>
