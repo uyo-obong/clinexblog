@@ -34,7 +34,7 @@
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="site-heading">
           <h1>Creativity</h1>
-          <span class="subheading">Creativity Is The Key Value To mindset</span>
+          <span class="subheading">This Is The Key Value To mindset</span>
         </div>
       </div>
     </div>
