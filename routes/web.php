@@ -25,5 +25,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
+
 Auth::routes();
 

@@ -21,7 +21,7 @@
 			<hr>
 
 			<!-- Preview Image -->
-			<img class="img-fluid rounded" src="{{url('uploads/'.$single->image)}}" alt="">
+			<img class="img-fluid rounded" src="{{url($single->image)}}" alt="">
 
 			<hr>
 

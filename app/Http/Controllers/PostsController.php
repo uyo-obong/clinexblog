@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use JD\Cloudder\Facades\Cloudder;
 
 class PostsController extends Controller
 {
@@ -38,15 +39,22 @@ class PostsController extends Controller
 		// 	'content' => 'required|min:10'
 		// ]);
 
-		$photo     = $request->file('image');
-		$extension = $photo->getClientOriginalExtension();
-		Storage::disk('public')->put($photo->getFilename().'.'.$extension,  File::get($photo));
+		$image = $request->file('image');
+		$name = $request->file('image')->getClientOriginalName();
+		$image_name = $request->file('image')->getRealPath();;
+		Cloudder::upload($image_name, null);
+		list($width, $height) = getimagesize($image_name);
+		$image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+       //save to uploads directory
+		$image->move(public_path("uploads"), $name);
 
+       //Save images
+		// $this->saveImages($request, $image_url);
 		$posts = new Posts;
 		$posts->title   = $request->title;
 		$posts->content = $request->contents;
 		$posts->author  = Auth::user()->name;
-		$posts->image   = $photo->getFilename().'.'.$extension;
+		$posts->image   = $image_url;
 		$posts->save();
 		return redirect(route('show'))->with("created", "created");
 	}
@@ -70,9 +78,14 @@ class PostsController extends Controller
 		// 	'content' => 'required|min:20'
 		// ]);
 		if ($request->hasFile('image')) {
-			$photo     = $request->file('image');
-			$extension = $photo->getClientOriginalExtension();
-			Storage::disk('public')->put($photo->getFilename().'.'.$extension,  File::get($photo));
+			$image = $request->file('image');
+			$name = $request->file('image')->getClientOriginalName();
+			$image_name = $request->file('image')->getRealPath();;
+			Cloudder::upload($image_name, null);
+			list($width, $height) = getimagesize($image_name);
+			$image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+       		//save to uploads directory
+			$image->move(public_path("uploads"), $name);
 		}
 		// dd($photo->getFilename().'.'.$extension);
 
@@ -80,7 +93,7 @@ class PostsController extends Controller
 		$post->title   = $request->title;
 		$post->content = $request->contents;
 		if ($request->hasFile('image')) {
-			$post->image   = $photo->getFilename().'.'.$extension;
+			$post->image   = $image_url;
 		}
 		$post->save();
 		return redirect(route('show'))->with("success", "success");
@@ -91,4 +104,5 @@ class PostsController extends Controller
 		$post = Posts::where('id', $id)->delete();
 		return redirect(route('show'))->with('delete', 'delete');
 	}
+
 }

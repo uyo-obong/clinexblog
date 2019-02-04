@@ -21,7 +21,7 @@
       <div class="card mb-4">
         <div class="card-title">
           <a style="text-decoration: none;" href="{{ route('single', $blog->id)}}">
-            <img class="card-img-top float-left" src="{{url('uploads/'.$blog->image)}}" alt="Image loading...">
+            <img class="card-img-top float-left" src="{{url($blog->image)}}" alt="Image loading...">
             <h2 style="font-weight: 200;"> {{ $blog->title }}</h2>
           </a>
         </div>
