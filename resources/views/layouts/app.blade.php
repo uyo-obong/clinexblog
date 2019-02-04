@@ -11,8 +11,8 @@
 
 
     <!-- Styles -->
-    <link href="{{ asset('admins/usercss/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('admins/usercss/blog-home.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('admins/usercss/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('admins/usercss/blog-home.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
